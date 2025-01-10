@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+Analyse Data App
+{% endblock %}
+
+{% block content %}
+<div class="gradient-custom text-white py-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center text-center py-5">
+            <div class="col-lg-8">
+                <h1 class="display-4 mb-3">Bienvenue sur l'Analyse Data App</h1>
+                <p class="lead mb-4">Une plateforme puissante pour analyser et visualiser vos données</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container mb-5">
+    <div class="row g-4">
+        <!-- Upload Card -->
+        <div class="col-md-6 col-lg-4">
+            <!-- Upload Card -->
+            <div class="card h-100 shadow-custom">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle text-white mb-3">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h5 class="card-title">Télécharger un fichier</h5>
+                    <p class="card-text mb-4">Importez vos fichiers de données pour commencer l'analyse</p>
+                    <a href="{% url 'Upload' %}" class="btn btn-custom">Commencer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Data Card -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-custom">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle text-white mb-3">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h5 class="card-title">Voir les données</h5>
+                    <p class="card-text mb-4">Consultez et explorez vos données facilement</p>
+                    <a href="{% url 'view_data' %}" class="btn btn-custom">Explorer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indexing Card -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-custom">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle text-white mb-3">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <h5 class="card-title">Indexation</h5>
+                    <p class="card-text mb-4">Gérez l'indexation des lignes et colonnes</p>
+                    <a href="{% url 'index_data' %}" class="btn btn-custom">Indexer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Card -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-custom">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle text-white mb-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h5 class="card-title">Analyse statistique</h5>
+                    <p class="card-text mb-4">Effectuez des analyses statistiques détaillées</p>
+                    <a href="{% url 'analyze' %}" class="btn btn-custom">Analyser</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visualization Card -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-custom">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle text-white mb-3">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h5 class="card-title">Visualisation</h5>
+                    <p class="card-text mb-4">Créez des visualisations interactives</p>
+                    <a href="{% url 'visualize' %}" class="btn btn-custom">Visualiser</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

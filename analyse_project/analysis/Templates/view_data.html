@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Voir les Données - Analyse Data App
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Styles généraux */  
+    .container {  
+        max-width: 1200px;  
+        margin: 0 auto;  
+        padding: 2rem;  
+    }  
+
+    h2 {  
+        text-align: center;  
+        margin-bottom: 2rem;  
+    }  
+
+    /* Styles pour la table de données */  
+    .table-container {  
+        overflow-x: auto;  
+        margin-bottom: 2rem;  
+    }  
+
+    table {  
+        width: 100%;  
+        border-collapse: collapse;  
+        font-size: 0.9rem;  
+    }  
+
+    th, td {  
+        padding: 0.8rem;  
+        text-align: left;  
+        border-bottom: 1px solid #000000;  
+    }  
+
+    th {  
+        background-color: #000000;  
+    }  
+
+    /* Styles pour les boutons de navigation */  
+    .nav-buttons {  
+        display: flex;  
+        justify-content: center;  
+        gap: 1rem;  
+        margin-top: 2rem;  
+    }  
+
+    .nav-button {  
+        display: inline-block;  
+        padding: 0.8rem 1.5rem;  
+        background-color: #575858;  
+        color: #000000;  
+        text-decoration: none;  
+        border-radius: 4px;  
+        transition: background-color 0.3s ease;  
+    }  
+
+    .nav-button:hover {  
+        background-color: #2a2a2b;  
+    }  
+
+    /* Styles pour les messages d'erreur */  
+    .error {  
+        color: #dc3545;  
+        text-align: center;  
+        margin-bottom: 2rem;  
+    }
+</style>
+
+<div class="container">
+    <h2>Voir les Données</h2>
+
+    {% if data_table %}
+        <!-- Si data_table existe, afficher la table de données -->
+        <div class="table-container">
+            <table>
+                {{ data_table|safe }}
+            </table>
+        </div>
+        <!-- Boutons de navigation -->
+        <div class="nav-buttons">
+            <a href="{% url 'home' %}" class="nav-button">← Accueil</a>
+            <a href="{% url 'index_data' %}" class="nav-button">Rechercher par Index</a>
+            <a href="{% url 'analyze' %}" class="nav-button">Analyser les Données →</a>
+        </div>
+    {% else %}
+        <!-- Si data_table n'existe pas, afficher un message d'erreur -->
+        <div class="error">
+            <p>{{ error|default:"Aucune donnée n'est disponible. Veuillez télécharger un fichier CSV." }}</p>
+        </div>
+        <!-- Bouton de retour à l'accueil -->
+        <div class="nav-buttons">
+            <a href="{% url 'home' %}" class="nav-button">← Retour à l'Accueil</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Metadata and links to external resources -->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Analyse Data App{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS Variables for color themes */
+        :root {
+            --deep-black: #111111;
+            --rich-gray: #1e1e1e;
+            --medium-gray: #333333;
+            --light-gray: #666666;
+            --softer-white: #f8f8f8;
+        }
+
+        /* Body styling */
+        body {
+            background-color: var(--rich-gray);
+            color: var(--softer-white);
+        }
+
+        /* Gradient background for custom sections */
+        .gradient-custom {
+            background: linear-gradient(135deg, var(--deep-black), var(--medium-gray));
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: var(--deep-black);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+        }
+
+        /* Card styling */
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            background-color: var(--medium-gray);
+            color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+        }
+
+        /* Custom button styling */
+        .btn-custom {
+            background-color: var(--deep-black);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--medium-gray);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Text styling */
+        .card-title, .display-4 {
+            color: white;
+        }
+
+        .card-text, .lead {
+            color: #ccc;
+        }
+
+        /* Table styling */
+        .table th {
+            background-color: var(--deep-black);
+            color: white;
+        }
+
+        .table td {
+            color: var(--softer-white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow-custom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Analyse Data App</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="gradient-custom py-4 mb-4 text-center">
+        <div class="container">
+            <h1 class="display-4">Analyse Data App</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="bg-dark text-white p-4 rounded shadow-custom">
+            {% block content %}
+            <p class="lead">Bienvenue dans notre application d'analyse des données.</p>
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

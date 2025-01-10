@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+<!-- Cette ligne indique que ce template hérite du template "base.html". -->
+
+{% block title %}
+Index Data - Analyse Data App
+{% endblock %}
+<!-- Cette section définit le titre de la page qui sera affiché dans l'onglet du navigateur. -->
+
+{% block content %}
+<style>
+    /* Styles généraux */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Styles pour les formulaires */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Styles pour les messages d'erreur */
+    .error {
+        color: #dc3545;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* Styles pour l'affichage des données */
+    .data-display {
+        margin-top: 1.5rem;
+    }
+
+    .data-display h3 {
+        margin-bottom: 1rem;
+    }
+
+    .data-display ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .data-display li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    /* Styles pour les boutons de navigation */
+    .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    .nav-button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h2>Consulter les Données par Index</h2>
+    <!-- Titre principal de la page -->
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+    <!-- Si une erreur est présente, elle sera affichée ici -->
+
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Jeton CSRF pour la sécurité des formulaires POST -->
+
+        <div class="form-group">
+            <label for="index">Index (0-{{ total_rows|default:0|add:"-1" }}):</label>
+            <input type="number" id="index" name="index" min="0" max="{{ total_rows|default:0|add:"-1" }}">
+        </div>
+        <!-- Champ de saisie pour l'index, avec des limites basées sur le nombre total de lignes -->
+
+        <!-- Première colonne -->
+        <div class="form-group">
+            <label for="column1">Première colonne:</label>
+            <select name="column1" id="column1" class="form-control">
+                <option value="">Sélectionnez une colonne</option>
+                {% for column in columns %}
+                <option value="{{ column }}" {% if selected_column1 == column %}selected{% endif %}>
+                    {{ column }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Menu déroulant pour sélectionner une colonne parmi les colonnes disponibles -->
+
+        <button type="submit">Rechercher</button>
+        <!-- Bouton pour soumettre le formulaire -->
+    </form>
+
+    {% if row_data %}
+        <div class="data-display">
+            <h3>Données de la ligne:</h3>
+            <ul>
+                {% for key, value in row_data.items %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <!-- Si des données de ligne sont disponibles, elles seront affichées ici sous forme de liste -->
+
+    {% if column_data %}
+        <div class="data-display">
+            <h3>Données de la colonne:</h3>
+            <ul>
+                {% for value in column_data %}
+                    <li>{{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <!-- Si des données de colonne sont disponibles, elles seront affichées ici sous forme de liste -->
+
+    <div class="nav-buttons">
+        <a href="{% url 'home' %}" class="nav-button">← Accueil</a>
+        <a href="{% url 'view_data' %}" class="nav-button">Voir Toutes les Données →</a>
+    </div>
+    <!-- Boutons de navigation pour retourner à l'accueil ou voir toutes les données -->
+</div>
+{% endblock %}
+<!-- Fin du bloc de contenu principal -->
