@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/f883ed51-6f59-4e6a-a4c4-7275fd678782)
+
+
 # Analyse Data App
 
 Ce projet est une application Django pour l'analyse et la visualisation des données. Il comprend des fonctionnalités pour le téléchargement, la visualisation, et l'analyse des données via des interfaces conviviales.
